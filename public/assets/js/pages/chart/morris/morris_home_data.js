@@ -1,7 +1,7 @@
 jQuery(document).ready(function() {
 	'use strict';
 
-	Morris.Area({
+	/*Morris.Area({
 		element: "area_line_chart",
 		behaveLikeLine: true,
 		data: [
@@ -42,7 +42,7 @@ jQuery(document).ready(function() {
 		formatter: function (y) {
 			return y + '%'
 		}
-	});
+	});*/
 });
 
 

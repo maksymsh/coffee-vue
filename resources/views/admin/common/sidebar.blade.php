@@ -8,7 +8,7 @@
                         <span></span>
                     </div>
                 </li>
-                <li class="sidebar-user-panel">
+                {{--<li class="sidebar-user-panel">
                     <div class="user-panel">
                         <div class="row">
                             <div class="sidebar-userpic">
@@ -33,7 +33,7 @@
                             </a>
                         </div>
                     </div>
-                </li>
+                </li>--}}
 
                 @include('admin.common.sidebar-items', ['items' => $sidebar_menu->roots()])
 

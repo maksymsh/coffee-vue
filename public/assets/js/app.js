@@ -4,7 +4,7 @@
  *  Description: Core script to handle the entire theme and core functions
  *
  **/
-var App = function() {
+var Admin = function() {
 
     // IE mode
     var isIE8 = false;
@@ -107,7 +107,7 @@ var App = function() {
 
             if (lastSelectedLayout != layoutOption) {
                 //layout changed, run responsive handler: 
-                App.runResizeHandlers();
+                Admin.runResizeHandlers();
             }
             lastSelectedLayout = layoutOption;
 
@@ -335,7 +335,7 @@ var App = function() {
     };
 
 
-    // runs callback functions set by App.addResponsiveHandler().
+    // runs callback functions set by Admin.addResponsiveHandler().
     var _runResizeHandlers = function() {
         // reinitialize other subscribed elements
         for (var i = 0; i < resizeHandlers.length; i++) {
@@ -547,7 +547,7 @@ var App = function() {
         };
 
         initChatSlimScroll();
-        App.addResizeHandler(initChatSlimScroll); // reinitialize on window resize
+        Admin.addResizeHandler(initChatSlimScroll); // reinitialize on window resize
 
         wrapper.find('.chat-sidebar-chat-users .media-list > .media').on('click', function() {
             wrapperChat.addClass("chat-sidebar-content-item-shown");
@@ -647,7 +647,7 @@ var App = function() {
                     e = $(".chat-sidebar-chat-users").attr("data-height");
                 i = $(".chat-sidebar-chat-users").attr("data-height") - 80 - t.find(".nav-justified > .nav-tabs").outerHeight(), a.attr("data-height", i), a.css("height", e + "px"), a.css("overflow-y", "auto")
             };
-        i(), App.addResizeHandler(i)
+        i(), Admin.addResizeHandler(i)
     };
 
     // Handles quick sidebar settings
@@ -667,7 +667,7 @@ var App = function() {
         };
 
         initSettingsSlimScroll();
-        App.addResizeHandler(initSettingsSlimScroll); // reinitialize on window resize
+        Admin.addResizeHandler(initSettingsSlimScroll); // reinitialize on window resize
     };
 
 
@@ -736,7 +736,7 @@ var App = function() {
         },
         // function to scroll to the top
         scrollTop: function() {
-            App.scrollTo();
+            Admin.scrollTo();
         },
 
         startPageLoading: function(options) {
@@ -839,9 +839,3 @@ var App = function() {
 
 }();
 
-jQuery(document).ready(function() {
-    App.init(); // init core componets
-    $(".chat-sidebar-chat-user-messages").animate({
-        scrollTop: $(document).height()
-    }, 1000);
-});

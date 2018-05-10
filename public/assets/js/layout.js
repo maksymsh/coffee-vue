@@ -10,7 +10,7 @@ var Layout = function () {
 
     var layoutCssPath = 'css/';
 
-    var resBreakpointMd = App.getResponsiveBreakpoint('md');
+    var resBreakpointMd = Admin.getResponsiveBreakpoint('md');
 
     var ajaxContentSuccessCallbacks = [];
     var ajaxContentErrorCallbacks = [];
@@ -24,7 +24,7 @@ var Layout = function () {
         var height;
 
         if (body.hasClass("page-footer-fixed") === true && body.hasClass("sidemenu-container-fixed") === false) {
-            var available_height = App.getViewPort().height - $('.page-footer').outerHeight() - $('.page-header').outerHeight();
+            var available_height = Admin.getViewPort().height - $('.page-footer').outerHeight() - $('.page-header').outerHeight();
             var sidebar_height = sidebar.outerHeight();
             if (sidebar_height > available_height) {
                 available_height = sidebar_height + $('.page-footer').outerHeight();
@@ -42,14 +42,14 @@ var Layout = function () {
                 var headerHeight = $('.page-header').outerHeight();
                 var footerHeight = $('.page-footer').outerHeight();
 
-                if (App.getViewPort().width < resBreakpointMd) {
-                    height = App.getViewPort().height - headerHeight - footerHeight;
+                if (Admin.getViewPort().width < resBreakpointMd) {
+                    height = Admin.getViewPort().height - headerHeight - footerHeight;
                 } else {
                     height = sidebar.height() + 20;
                 }
 
-                if ((height + headerHeight + footerHeight) <= App.getViewPort().height) {
-                    height = App.getViewPort().height - headerHeight - footerHeight;
+                if ((height + headerHeight + footerHeight) <= Admin.getViewPort().height) {
+                    height = Admin.getViewPort().height - headerHeight - footerHeight;
                 }
             }
             content.attr('style', 'min-height:' + height + 'px');
@@ -127,7 +127,7 @@ var Layout = function () {
         });
 
         if (mode === 'click') {
-            if (App.getViewPort().width < resBreakpointMd && $('.sidemenu-container').hasClass("in")) { // close the menu on mobile view while laoding a page 
+            if (Admin.getViewPort().width < resBreakpointMd && $('.sidemenu-container').hasClass("in")) { // close the menu on mobile view while laoding a page 
                 $('.page-header .responsive-toggler').click();
             }
         }
@@ -141,18 +141,18 @@ var Layout = function () {
         $('.sidemenu').on('click', 'li > a.nav-toggle, li > a > span.nav-toggle', function (e) {
             var that = $(this).closest('.nav-item').children('.nav-link');
 
-            if (App.getViewPort().width >= resBreakpointMd && !$('.sidemenu').attr("data-initialized") && $('body').hasClass('sidemenu-closed') &&  that.parent('li').parent('.sidemenu').length === 1) {
+            if (Admin.getViewPort().width >= resBreakpointMd && !$('.sidemenu').attr("data-initialized") && $('body').hasClass('sidemenu-closed') &&  that.parent('li').parent('.sidemenu').length === 1) {
                 return;
             }
 
             var hasSubMenu = that.next().hasClass('sub-menu');
 
-            if (App.getViewPort().width >= resBreakpointMd && that.parents('.sidemenu-hover-submenu').length === 1) { // exit of hover sidebar menu
+            if (Admin.getViewPort().width >= resBreakpointMd && that.parents('.sidemenu-hover-submenu').length === 1) { // exit of hover sidebar menu
                 return;
             }
 
             if (hasSubMenu === false) {
-                if (App.getViewPort().width < resBreakpointMd && $('.sidemenu-container').hasClass("in")) { // close the menu on mobile view while laoding a page 
+                if (Admin.getViewPort().width < resBreakpointMd && $('.sidemenu-container').hasClass("in")) { // close the menu on mobile view while laoding a page 
                     $('.page-header .responsive-toggler').click();
                 }
                 return;
@@ -185,7 +185,7 @@ var Layout = function () {
                                 'scrollTo': (the.position()).top
                             });
                         } else {
-                            App.scrollTo(the, slideOffeset);
+                            Admin.scrollTo(the, slideOffeset);
                         }
                     }
                     handleSidebarAndContentHeight();
@@ -200,7 +200,7 @@ var Layout = function () {
                                 'scrollTo': (the.position()).top
                             });
                         } else {
-                            App.scrollTo(the, slideOffeset);
+                            Admin.scrollTo(the, slideOffeset);
                         }
                     }
                     handleSidebarAndContentHeight();
@@ -213,7 +213,7 @@ var Layout = function () {
 
         // handle scrolling to top on responsive menu toggler click when header is fixed for mobile view
         $(document).on('click', '.page-header-fixed-mobile .page-header .responsive-toggler', function(){
-            App.scrollTop(); 
+            Admin.scrollTop(); 
         });      
      
         // handle sidebar hover effect        
@@ -266,7 +266,7 @@ var Layout = function () {
 
     // Helper function to calculate sidebar height for fixed sidebar layout.
     var _calculateFixedSidebarViewportHeight = function () {
-        var sidebarHeight = App.getViewPort().height - $('.page-header').outerHeight(true);
+        var sidebarHeight = Admin.getViewPort().height - $('.page-header').outerHeight(true);
         if ($('body').hasClass("page-footer-fixed")) {
             sidebarHeight = sidebarHeight - $('.page-footer').outerHeight();
         }
@@ -284,10 +284,10 @@ var Layout = function () {
             return;
         }
 
-        if (App.getViewPort().width >= resBreakpointMd && !$('body').hasClass('sidemenu-not-fixed')) {
+        if (Admin.getViewPort().width >= resBreakpointMd && !$('body').hasClass('sidemenu-not-fixed')) {
              menu.attr("data-height", _calculateFixedSidebarViewportHeight());
-            App.destroySlimScroll(menu);
-            App.initSlimScroll(menu);
+            Admin.destroySlimScroll(menu);
+            Admin.initSlimScroll(menu);
             handleSidebarAndContentHeight();
         }
     };
@@ -311,7 +311,7 @@ var Layout = function () {
     // Hanles sidebar toggler
     var handleSidebarToggler = function () {
         var body = $('body');
-        if ($.cookie && $.cookie('sidebar_closed') === '1' && App.getViewPort().width >= resBreakpointMd) {
+        if ($.cookie && $.cookie('sidebar_closed') === '1' && Admin.getViewPort().width >= resBreakpointMd) {
             $('body').addClass('sidemenu-closed');
             $('.sidemenu').addClass('sidemenu-closed');
         }
@@ -434,7 +434,7 @@ var Layout = function () {
             var target = $(this);
             var height;
 
-            height = App.getViewPort().height -
+            height = Admin.getViewPort().height -
                 $('.page-header').outerHeight(true) -
                 $('.page-footer').outerHeight(true) -
                 $('.page-title').outerHeight(true) -
@@ -443,27 +443,27 @@ var Layout = function () {
             if (target.hasClass('portlet')) {
                 var portletBody = target.find('.portlet-body');
 
-                App.destroySlimScroll(portletBody.find('.full-height-content-body')); // destroy slimscroll 
+                Admin.destroySlimScroll(portletBody.find('.full-height-content-body')); // destroy slimscroll 
                 
                 height = height -
                     target.find('.portlet-title').outerHeight(true) -
                     parseInt(target.find('.portlet-body').css('padding-top'),10) -
                     parseInt(target.find('.portlet-body').css('padding-bottom'),10) - 5;
 
-                if (App.getViewPort().width >= resBreakpointMd && target.hasClass("full-height-content-scrollable")) {
+                if (Admin.getViewPort().width >= resBreakpointMd && target.hasClass("full-height-content-scrollable")) {
                     height = height - 35;
                     portletBody.find('.full-height-content-body').css('height', height);
-                    App.initSlimScroll(portletBody.find('.full-height-content-body'));
+                    Admin.initSlimScroll(portletBody.find('.full-height-content-body'));
                 } else {
                     portletBody.css('min-height', height);
                 }
             } else {
-               App.destroySlimScroll(target.find('.full-height-content-body')); // destroy slimscroll 
+               Admin.destroySlimScroll(target.find('.full-height-content-body')); // destroy slimscroll 
 
-                if (App.getViewPort().width >= resBreakpointMd && target.hasClass("full-height-content-scrollable")) {
+                if (Admin.getViewPort().width >= resBreakpointMd && target.hasClass("full-height-content-scrollable")) {
                     height = height - 35;
                     target.find('.full-height-content-body').css('height', height);
-                    App.initSlimScroll(target.find('.full-height-content-body'));
+                    Admin.initSlimScroll(target.find('.full-height-content-body'));
                 } else {
                     target.css('min-height', height);
                 }
@@ -488,15 +488,15 @@ var Layout = function () {
             handleSidebarToggler(); // handles sidebar hide/show
 
 
-            App.addResizeHandler(handleFixedSidebar); // reinitialize fixed sidebar on window resize
+            Admin.addResizeHandler(handleFixedSidebar); // reinitialize fixed sidebar on window resize
         },
 
         initContent: function() {
             handle100HeightContent(); // handles 100% height elements(block, portlet, etc)
             handleTabs(); // handle bootstrah tabs
 
-            App.addResizeHandler(handleSidebarAndContentHeight); // recalculate sidebar & content height on window resize
-            App.addResizeHandler(handle100HeightContent); // reinitialize content height on window resize 
+            Admin.addResizeHandler(handleSidebarAndContentHeight); // recalculate sidebar & content height on window resize
+            Admin.addResizeHandler(handle100HeightContent); // reinitialize content height on window resize 
         },
 
         initFooter: function() {
@@ -513,7 +513,7 @@ var Layout = function () {
         loadAjaxContent: function(url, sidebarMenuLink) {
             var pageContent = $('.page-content .page-content-body');    
 
-            App.startPageLoading({animate: true});
+            Admin.startPageLoading({animate: true});
             
             $.ajax({
                 type: "GET",
@@ -521,7 +521,7 @@ var Layout = function () {
                 url: url,
                 dataType: "html",
                 success: function (res) {    
-                    App.stopPageLoading();
+                    Admin.stopPageLoading();
                                     
                     for (var i = 0; i < ajaxContentSuccessCallbacks.length; i++) {
                         ajaxContentSuccessCallbacks[i].call(res);
@@ -533,10 +533,10 @@ var Layout = function () {
 
                     pageContent.html(res);
                     Layout.fixContentHeight(); // fix content height
-                    App.initAjax(); // initialize core stuff
+                    Admin.initAjax(); // initialize core stuff
                 },
                 error: function (res, ajaxOptions, thrownError) {
-                    App.stopPageLoading();
+                    Admin.stopPageLoading();
                     pageContent.html('<h4>Could not load the requested content.</h4>');
 
                     for (var i = 0; i < ajaxContentErrorCallbacks.length; i++) {
@@ -568,11 +568,11 @@ var Layout = function () {
         },
 
         getLayoutImgPath: function () {
-            return App.getAssetsPath() + layoutImgPath;
+            return Admin.getAssetsPath() + layoutImgPath;
         },
 
         getLayoutCssPath: function () {
-            return App.getAssetsPath() + layoutCssPath;
+            return Admin.getAssetsPath() + layoutCssPath;
         }
     };
 

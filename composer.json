@@ -6,7 +6,6 @@
     "type": "project",
     "require": {
         "php": "^7.1.3",
-        "cviebrock/eloquent-sluggable": "^4.5",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.3",
         "intervention/image": "^2.4",
@@ -19,7 +18,6 @@
         "lis-dev/nova-poshta-api-2": "dev-master",
         "orchestra/parser": "^3.6",
         "predis/predis": "^1.1",
-        "spatie/laravel-medialibrary": "^7.1",
         "spatie/laravel-robots-middleware": "^1.0",
         "spatie/laravel-sitemap": "^5.0"
     },

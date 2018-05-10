@@ -15,6 +15,10 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if($request->expectsJson()){
+            return $next($request);
+        } else {
+            return \Response::view('admin.layouts.app');
+        }
     }
 }
